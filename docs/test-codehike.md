@@ -1,4 +1,11 @@
-# Hello, world!
+---
+title: "Hello, world!"
+slug: "test-codehike"
+hidden: false
+createdAt: "2022-10-20T17:08:52.219Z"
+updatedAt: "2022-10-21T14:33:45.242Z"
+excerpt: "Insert a synopsis of your article here"
+---
 
 <CH.Code>
 
