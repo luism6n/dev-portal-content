@@ -24,7 +24,7 @@ curl --request post \
 ```python Python
 import http.client
 
-conn = http.client.HTTPSConnection("%7Baccountname%7D.%7Benvironment%7D.com.br")
+conn = http.client.HTTPSConnection("{accountname}.{environment}.com.br")
 
 payload = "{\"items\":[{\"id\":\"1\",\"quantity\":1,\"seller\":\"1\"}],\"country\":\"BRA\",\"postalCode\":\"12345-000\",\"geoCoordinates\":[-47.924747467041016]}"
 
@@ -43,12 +43,12 @@ data = res.read()
 print(data.decode("utf-8"))
 ```
 
-```js Node.js
+```js Node.js mark=5[15:27],5[29:41]
 const http = require("https");
 
 const options = {
  "method": "post",
- "hostname": "%7Baccountname%7D.%7Benvironment%7D.com.br",
+ "hostname": "{accountname}.{environment}.com.br",
  "port": null,
  "path": "/api/checkout/pub/orderForms/simulation?RnbBehavior=0",
  "headers": {
@@ -95,13 +95,13 @@ From the response content, you will be mostly using the information in `items`, 
 
 <CH.Code>
 
-```shell Shell
+```shell Shell mark=2[17:29],2[31:43]
 ```
 
-```python Python
+```python Python mark=3[37:49],3[51:63]
 ```
 
-```js Node.js
+```js Node.js mark=5[15:27],5[29:41]
 ```
 
 </CH.Code>
@@ -120,7 +120,7 @@ If the response to this request returns any content, it means that you already h
 
 <CH.Code>
 
-```shell Shell
+```shell Shell mark=2[17:29],2[31:43]
 curl --request get \
  --url 'https://{accountname}.{environment}.com.br/api/checkout/pub/profiles?ensureComplete=true' \
  --header 'Accept: application/json' \
@@ -132,7 +132,7 @@ curl --request get \
 ```python Python
 import http.client
 
-conn = http.client.HTTPSConnection("%7Baccountname%7D.%7Benvironment%7D.com.br")
+conn = http.client.HTTPSConnection("{accountname}.{environment}.com.br")
 
 headers = {
     'Accept': "application/json",
@@ -154,7 +154,7 @@ const http = require("https");
 
 const options = {
  "method": "get",
- "hostname": "%7Baccountname%7D.%7Benvironment%7D.com.br",
+ "hostname": "{accountname}.{environment}.com.br",
  "port": null,
  "path": "/api/checkout/pub/profiles?ensureComplete=true",
  "headers": {
@@ -567,7 +567,7 @@ curl --request put \
 ```python Python
 import http.client
 
-conn = http.client.HTTPSConnection("%7Baccountname%7D.%7Benvironment%7D.com.br")
+conn = http.client.HTTPSConnection("{accountname}.{environment}.com.br")
 
 payload = "{\"items\":[{\"id\":\"123456789\",\"quantity\":1,\"seller\":\"1\"}],\"clientProfileData\":{\"email\":\"string\",\"firstName\":\"string\",\"lastName\":\"string\",\"documentType\":\"string\",\"document\":\"string\",\"phone\":\"string\",\"corporateName\":\"string\",\"tradeName\":\"string\",\"corporateDocument\":\"string\",\"stateInscription\":\"string\",\"corporatePhone\":\"string\",\"isCorporate\":false},\"shippingData\":{\"address\":{\"addressType\":\"residential\",\"receiverName\":\"string\",\"addressId\":\"string\",\"postalCode\":\"string\",\"city\":\"string\",\"state\":\"string\",\"country\":\"string\",\"street\":\"string\",\"number\":\"string\",\"neighborhood\":\"string\",\"complement\":\"string\",\"reference\":\"string\",\"geoCoordinates\":[-47.924747467041016]},\"logisticsInfo\":[{\"itemIndex\":0,\"selectedSla\":\"string\",\"lockTTL\":\"string\",\"shippingEstimate\":\"string\",\"price\":0,\"deliveryWindow\":{\"startDateUtc\":\"string\",\"endDateUtc\":\"string\",\"price\":0,\"lisPrice\":0,\"tax\":0}}],\"updateStatus\":\"string\"},\"paymentData\":{\"giftCards\":[{\"redemptionCode\":\"HYUO-TEZZ-QFFT-HTFR\",\"value\":500,\"balance\":500,\"name\":\"name-example\",\"id\":\"1390324156495k195pmab4rall3di\",\"inUse\":true,\"isSpecialCard\":false}],\"giftCardMessages\":[\"?\"],\"paymentSystems\":[{\"id\":2,\"name\":\"Visa\",\"groupName\":\"creditCardPaymentGroup\",\"validator\":{\"regex\":\"^4\",\"mask\":\"9999 9999 9999 9999\",\"cardCodeRegex\":\"[^0-9]\",\"cardCodeMask\":\"999\",\"weights\":[0]},\"stringId\":\"string\",\"template\":\"string\",\"requiresDocument\":false,\"selected\":false,\"isCustom\":false,\"description\":\"string\"}],\"payments\":[{\"accountId\":\"string\",\"bin\":\"string\",\"installments\":0,\"paymentSystem\":\"string\",\"referenceValue\":0,\"value\":0}],\"updateStatus\":\"string\"},\"marketingData\":{\"coupon\":\"string\",\"utmSource\":\"string\",\"utmMedium\":\"string\",\"utmCampaign\":\"string\",\"utmiPage\":\"string\",\"utmiPart\":\"string\",\"utmiCampaign\":\"string\"},\"openTextField\":\"string\",\"salesAssociateData\":{\"salesAssociateId\":\"string\"}}"
 
@@ -591,7 +591,7 @@ const http = require("https");
 
 const options = {
  "method": "put",
- "hostname": "%7Baccountname%7D.%7Benvironment%7D.com.br",
+ "hostname": "{accountname}.{environment}.com.br",
  "port": null,
  "path": "/api/checkout/pub/orders",
  "headers": {
@@ -850,7 +850,7 @@ curl --request post \
 ```python Python
 import http.client
 
-conn = http.client.HTTPSConnection("%7Baccountname%7D.vtexpayments.com.br")
+conn = http.client.HTTPSConnection("{accountname}.vtexpayments.com.br")
 
 payload = "[{\"paymentSystem\":4,\"installments\":1,\"currencyCode\":\"BRL\",\"value\":100,\"installmentsInterestRate\":0,\"installmentsValue\":100,\"referenceValue\":100,\"fields\":{\"holderName\":\"UserTest\",\"cardNumber\":\"5378244888889174\",\"validationCode\":\"231\",\"dueDate\":\"10/19\",\"document\":\"8041734561\",\"accountId\":\"\",\"address\":null,\"callbackUrl\":\"\"},\"transaction\":{\"id\":\"{{transactionId}}\",\"merchantName\":\"{{accountName}}\"}}]"
 
@@ -873,7 +873,7 @@ const http = require("https");
 
 const options = {
  "method": "post",
- "hostname": "%7Baccountname%7D.vtexpayments.com.br",
+ "hostname": "{accountname}.vtexpayments.com.br",
  "port": null,
  "path": "/api/pub/transactions//payments",
  "headers": {
@@ -954,7 +954,7 @@ curl --request post \
 ```python Python
 import http.client
 
-conn = http.client.HTTPSConnection("%7Baccountname%7D.%7Benvironment%7D.com.br")
+conn = http.client.HTTPSConnection("{accountname}.{environment}.com.br")
 
 headers = {
     'Cookie': "Vtex_CHKO_Auth=0e/RpYIEZu19BuwXB4tZ7eIGu9HT8vdUAHWQDHDpxMc=; CheckoutDataAccess=0e/PoiTEZu19BuwXB4tZ7eIGu9HT8vdUAHWQDHDpxMc=",
@@ -977,7 +977,7 @@ const http = require("https");
 
 const options = {
  "method": "post",
- "hostname": "%7Baccountname%7D.%7Benvironment%7D.com.br",
+ "hostname": "{accountname}.{environment}.com.br",
  "port": null,
  "path": "/api/checkout/pub/gatewayCallback/123456789",
  "headers": {
