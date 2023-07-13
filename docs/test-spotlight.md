@@ -554,7 +554,7 @@ If the delivery method is pickup point, add the information <code>"selectedDeliv
 
 <CH.Code>
 
-```shell Shell
+```shell Shell mark=2[17:29],2[31:43]
 curl --request put \
  --url 'https://{accountname}.{environment}.com.br/api/checkout/pub/orders' \
  --header 'Accept: application/json' \
@@ -564,7 +564,7 @@ curl --request put \
  --data '{"items":[{"id":"123456789","quantity":1,"seller":"1"}],"clientProfileData":{"email":"string","firstName":"string","lastName":"string","documentType":"string","document":"string","phone":"string","corporateName":"string","tradeName":"string","corporateDocument":"string","stateInscription":"string","corporatePhone":"string","isCorporate":false},"shippingData":{"address":{"addressType":"residential","receiverName":"string","addressId":"string","postalCode":"string","city":"string","state":"string","country":"string","street":"string","number":"string","neighborhood":"string","complement":"string","reference":"string","geoCoordinates":[-47.924747467041016]},"logisticsInfo":[{"itemIndex":0,"selectedSla":"string","lockTTL":"string","shippingEstimate":"string","price":0,"deliveryWindow":{"startDateUtc":"string","endDateUtc":"string","price":0,"lisPrice":0,"tax":0}}],"updateStatus":"string"},"paymentData":{"giftCards":[{"redemptionCode":"HYUO-TEZZ-QFFT-HTFR","value":500,"balance":500,"name":"name-example","id":"1390324156495k195pmab4rall3di","inUse":true,"isSpecialCard":false}],"giftCardMessages":["?"],"paymentSystems":[{"id":2,"name":"Visa","groupName":"creditCardPaymentGroup","validator":{"regex":"^4","mask":"9999 9999 9999 9999","cardCodeRegex":"[^0-9]","cardCodeMask":"999","weights":[0]},"stringId":"string","template":"string","requiresDocument":false,"selected":false,"isCustom":false,"description":"string"}],"payments":[{"accountId":"string","bin":"string","installments":0,"paymentSystem":"string","referenceValue":0,"value":0}],"updateStatus":"string"},"marketingData":{"coupon":"string","utmSource":"string","utmMedium":"string","utmCampaign":"string","utmiPage":"string","utmiPart":"string","utmiCampaign":"string"},"openTextField":"string","salesAssociateData":{"salesAssociateId":"string"}}'
 ```
 
-```python Python
+```python Python mark=3[37:49],3[51:63]
 import http.client
 
 conn = http.client.HTTPSConnection("{accountname}.{environment}.com.br")
@@ -586,7 +586,7 @@ data = res.read()
 print(data.decode("utf-8"))
 ```
 
-```js Node.js
+```js Node.js mark=5[15:27],5[29:41]
 const http = require("https");
 
 const options = {
@@ -808,13 +808,13 @@ If you get a status `201 Created` response, take note of four pieces of informat
 
 <CH.Code>
 
-```shell Shell
+```shell Shell mark=2[17:29],2[31:43]
 ```
 
-```python Python
+```python Python mark=3[37:49],3[51:63]
 ```
 
-```js Node.js
+```js Node.js mark=5[15:27],5[29:41]
 ```
 
 ---
@@ -838,7 +838,7 @@ The information you send in this step’s request body should be based on the `p
 
 <CH.Code>
 
-```shell Shell
+```shell Shell mark=2[17:29],2[31:43]
 curl --request post \
  --url 'https://{accountname}.vtexpayments.com.br/api/pub/transactions//payments' \
  --header 'Content-Type: application/json' \
@@ -847,7 +847,7 @@ curl --request post \
  --data '[{"paymentSystem":4,"installments":1,"currencyCode":"BRL","value":100,"installmentsInterestRate":0,"installmentsValue":100,"referenceValue":100,"fields":{"holderName":"UserTest","cardNumber":"5378244888889174","validationCode":"231","dueDate":"10/19","document":"8041734561","accountId":"","address":null,"callbackUrl":""},"transaction":{"id":"{{transactionId}}","merchantName":"{{accountName}}"}}]'
 ```
 
-```python Python
+```python Python mark=3[37:49],3[51:63]
 import http.client
 
 conn = http.client.HTTPSConnection("{accountname}.vtexpayments.com.br")
@@ -868,7 +868,7 @@ data = res.read()
 print(data.decode("utf-8"))
 ```
 
-```js Node.js
+```js Node.js mark=5[15:27],5[29:41]
 const http = require("https");
 
 const options = {
@@ -941,7 +941,7 @@ At this point, if everything is ok with the payment, the order should be placed.
 
 <CH.Code>
 
-```shell Shell
+```shell Shell mark=2[17:29],2[31:43]
 curl --request post \
  --url 'https://{accountname}.{environment}.com.br/api/checkout/pub/gatewayCallback/123456789' \
  --header 'Accept: application/json' \
@@ -951,7 +951,7 @@ curl --request post \
  --header 'X-VTEX-API-AppToken: '
 ```
 
-```python Python
+```python Python mark=3[37:49],3[51:63]
 import http.client
 
 conn = http.client.HTTPSConnection("{accountname}.{environment}.com.br")
@@ -972,7 +972,7 @@ data = res.read()
 print(data.decode("utf-8"))
 ```
 
-```js Node.js
+```js Node.js mark=5[15:27],5[29:41]
 const http = require("https");
 
 const options = {
