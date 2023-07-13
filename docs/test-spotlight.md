@@ -232,7 +232,7 @@ An [orderForm](https://developers.vtex.com/docs/guides/orderform-fields) may inc
 
 > ℹ️️ Note that we are assembling this data structure to be sent as the request body in the next step. Below, we discuss these sections briefly, but you can learn more about each field in the [Place order API request documentation.](https://developers.vtex.com/docs/api-reference/checkout-api#put-/api/checkout/pub/orders)
 
-```json Response focus=1:7```json Response focus=5,13,25,20
+```json Response focus=5,13,25,20
 ```
 
 ---
