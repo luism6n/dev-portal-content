@@ -604,7 +604,7 @@ If you get a status `201 Created` response, take note of four pieces of informat
 
 >❗ Starting from the placing of the order, you have five minutes to complete the payment process. Otherwise, the order is automatically canceled and tagged `incomplete`.
 
-<CH.Code show={["Shell", "Python", "Node.js", "Body"]}>
+<CH.Code show={["Shell", "Python", "Node.js", "Response"]}>
 
 ```shell Shell mark=2[17:29],2[31:43]
 curl --request put \
@@ -855,7 +855,7 @@ The information you send in this step’s request body should be based on the `p
 
 >❗ Make sure that all value-related fields match the information sent in [step four](https://developers.vtex.com/docs/guides/create-a-regular-order-using-the-checkout-api#4-place-the-order), when placing the order.
 
-<CH.Code show={["Shell", "Python", "Node.js", "Body"]}>
+<CH.Code show={["Shell", "Python", "Node.js", "Response"]}>
 
 ```shell Shell mark=2[17:29],2[31:43]
 curl --request post \
@@ -958,7 +958,7 @@ At this point, if everything is ok with the payment, the order should be placed.
 
 > Be aware that this process uses the gateway connectors configured in your VTEX environment. Be careful to avoid any unwanted charges or unexpected payment denials.
 
-<CH.Code show={["Shell", "Python", "Node.js", "Body"]}>
+<CH.Code show={["Shell", "Python", "Node.js", "Response"]}>
 
 ```shell Shell mark=2[17:29],2[31:43]
 curl --request post \
@@ -1039,3 +1039,5 @@ req.end();
 You should be able to verify your order was in fact placed in the [Order management module](https://help.vtex.com/en/tutorial/orders-list--tutorials_200#) in VTEX Admin.
 
 You can also use the API requests [Get order](https://developers.vtex.com/docs/api-reference/orders-api#get-/api/oms/pvt/orders/-orderId-) and [List orders](https://developers.vtex.com/docs/api-reference/orders-api#get-/api/oms/pvt/orders) for this purpose.
+
+<div style={{ height: "8em" }} />
