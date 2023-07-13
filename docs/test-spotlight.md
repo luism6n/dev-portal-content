@@ -81,6 +81,418 @@ req.write(JSON.stringify({
 req.end();
 ```
 
+---
+
+```json Response
+{
+  "items": [
+    {
+      "id": "1",
+      "requestIndex": 0,
+      "quantity": 1,
+      "seller": "1",
+      "sellerChain": [
+        "1"
+      ],
+      "tax": 0,
+      "priceValidUntil": "2023-07-12T11:49:01Z",
+      "price": 9999,
+      "listPrice": 9999,
+      "rewardValue": 0,
+      "sellingPrice": 2999700,
+      "offerings": [],
+      "priceTags": [
+        {
+          "name": "DISCOUNT@MANUALPRICE",
+          "value": -5000,
+          "rawValue": -50,
+          "isPercentual": false,
+          "identifier": "1234abc-5678b-1234c"
+        }
+      ],
+      "measurementUnit": "un",
+      "unitMultiplier": 300,
+      "parentItemIndex": null,
+      "parentAssemblyBinding": null,
+      "availability": "available",
+      "priceDefinition": {
+        "calculatedSellingPrice": 2999700,
+        "total": 2999700,
+        "sellingPrices": [
+          {
+            "value": 2999700,
+            "quantity": 1
+          }
+        ]
+      }
+    }
+  ],
+  "ratesAndBenefitsData": {
+    "rateAndBenefitsIdentifiers": [],
+    "teaser": []
+  },
+  "paymentData": {
+    "installmentOptions": [
+      {
+        "paymentSystem": "2",
+        "bin": null,
+        "paymentName": "Visa",
+        "paymentGroupName": "creditCardPaymentGroup",
+        "value": 2999700,
+        "installments": [
+          {
+            "count": 1,
+            "hasInterestRate": false,
+            "interestRate": 0,
+            "value": 2999700,
+            "total": 2999700,
+            "sellerMerchantInstallments": [
+              {
+                "id": "LOJADOBRENO",
+                "count": 1,
+                "hasInterestRate": false,
+                "interestRate": 0,
+                "value": 2999700,
+                "total": 2999700
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "paymentSystem": "6",
+        "bin": null,
+        "paymentName": "Boleto Bancário",
+        "paymentGroupName": "bankInvoicePaymentGroup",
+        "value": 2999700,
+        "installments": [
+          {
+            "count": 1,
+            "hasInterestRate": false,
+            "interestRate": 0,
+            "value": 2999700,
+            "total": 2999700,
+            "sellerMerchantInstallments": [
+              {
+                "id": "LOJADOBRENO",
+                "count": 1,
+                "hasInterestRate": false,
+                "interestRate": 0,
+                "value": 2999700,
+                "total": 2999700
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "paymentSystem": "127",
+        "bin": null,
+        "paymentName": "MercadoPagoPro",
+        "paymentGroupName": "MercadoPagoProPaymentGroup",
+        "value": 2999700,
+        "installments": [
+          {
+            "count": 1,
+            "hasInterestRate": false,
+            "interestRate": 0,
+            "value": 2999700,
+            "total": 2999700,
+            "sellerMerchantInstallments": [
+              {
+                "id": "LOJADOBRENO",
+                "count": 1,
+                "hasInterestRate": false,
+                "interestRate": 0,
+                "value": 2999700,
+                "total": 2999700
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "paymentSystem": "202",
+        "bin": null,
+        "paymentName": "Dinheiro",
+        "paymentGroupName": "custom202PaymentGroupPaymentGroup",
+        "value": 2999700,
+        "installments": [
+          {
+            "count": 1,
+            "hasInterestRate": false,
+            "interestRate": 0,
+            "value": 2999700,
+            "total": 2999700,
+            "sellerMerchantInstallments": [
+              {
+                "id": "LOJADOBRENO",
+                "count": 1,
+                "hasInterestRate": false,
+                "interestRate": 0,
+                "value": 2999700,
+                "total": 2999700
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "paymentSystems": [
+      {
+        "id": 202,
+        "name": "Dinheiro",
+        "groupName": "custom202PaymentGroupPaymentGroup",
+        "validator": null,
+        "stringId": "202",
+        "template": "custom202PaymentGroupPaymentGroup-template",
+        "requiresDocument": false,
+        "displayDocument": false,
+        "isCustom": true,
+        "description": "",
+        "requiresAuthentication": false,
+        "dueDate": "2022-07-22T11:39:36.37197Z",
+        "availablePayments": null
+      },
+      {
+        "id": 6,
+        "name": "Boleto Bancário",
+        "groupName": "bankInvoicePaymentGroup",
+        "validator": null,
+        "stringId": "6",
+        "template": "bankInvoicePaymentGroup-template",
+        "requiresDocument": false,
+        "displayDocument": false,
+        "isCustom": false,
+        "description": "",
+        "requiresAuthentication": false,
+        "dueDate": "2022-07-19T11:39:36.37197Z",
+        "availablePayments": null
+      },
+      {
+        "id": 2,
+        "name": "Visa",
+        "groupName": "creditCardPaymentGroup",
+        "validator": null,
+        "stringId": "2",
+        "template": "creditCardPaymentGroup-template",
+        "requiresDocument": false,
+        "displayDocument": false,
+        "isCustom": false,
+        "description": "",
+        "requiresAuthentication": false,
+        "dueDate": "2022-07-19T11:39:36.37197Z",
+        "availablePayments": null
+      },
+      {
+        "id": 127,
+        "name": "MercadoPagoPro",
+        "groupName": "MercadoPagoProPaymentGroup",
+        "validator": null,
+        "stringId": "127",
+        "template": "MercadoPagoProPaymentGroup-template",
+        "requiresDocument": false,
+        "displayDocument": false,
+        "isCustom": false,
+        "description": "",
+        "requiresAuthentication": false,
+        "dueDate": "2022-07-19T11:39:36.37197Z",
+        "availablePayments": null
+      }
+    ],
+    "payments": [],
+    "giftCards": [],
+    "giftCardMessages": [],
+    "availableAccounts": [],
+    "availableTokens": [],
+    "availableAssociations": {}
+  },
+  "selectableGifts": [],
+  "marketingData": {
+    "utmSource": "app",
+    "utmMedium": "CPC",
+    "utmCampaign": "Black friday",
+    "utmipage": "true",
+    "utmiPart": "true",
+    "utmiCampaign": "true",
+    "coupon": null,
+    "marketingTags": [
+      "tag1",
+      "tag2"
+    ]
+  },
+  "country": "BRA",
+  "postalCode": "12345-000",
+  "geoCoordinates": [
+    -47.924747467041016,
+    -15.832582473754883
+  ],
+  "logisticsInfo": [
+    {
+      "itemIndex": 0,
+      "addressId": null,
+      "selectedSla": null,
+      "selectedDeliveryChannel": null,
+      "quantity": 1,
+      "shipsTo": [
+        "BRA"
+      ],
+      "slas": [
+        {
+          "id": "Normal",
+          "deliveryChannel": "delivery",
+          "name": "Normal",
+          "deliveryIds": [
+            {
+              "courierId": "1",
+              "warehouseId": "1_1",
+              "dockId": "1",
+              "courierName": "Transportadora",
+              "quantity": 1,
+              "kitItemDetails": []
+            }
+          ],
+          "shippingEstimate": "3bd",
+          "shippingEstimateDate": null,
+          "lockTTL": "10d",
+          "availableDeliveryWindows": {
+            "startDateUtc": "2017-03-27T00:00:00+00:00",
+            "endDateUtc": "2017-03-27T00:00:00+00:00",
+            "price": 0,
+            "lisPrice": 0,
+            "tax": 0
+          },
+          "deliveryWindow": {
+            "startDateUtc": "2014-04-21T09:00:00+00:00",
+            "endDateUtc": "2014-04-21T12:00:00+00:00",
+            "price": 0,
+            "listprice": 1000,
+            "tax": 0
+          },
+          "price": 1500,
+          "listPrice": 1500,
+          "tax": 0,
+          "pickupStoreInfo": {
+            "isPickupStore": false,
+            "friendlyName": null,
+            "address": null,
+            "additionalInfo": null,
+            "dockId": null
+          },
+          "pickupPointId": null,
+          "pickupDistance": 0,
+          "polygonName": null,
+          "transitTime": "3bd"
+        }
+      ],
+      "deliveryChannels": [
+        {
+          "id": "pickup-in-point"
+        },
+        {
+          "id": "delivery"
+        }
+      ]
+    }
+  ],
+  "messages": [],
+  "purchaseConditions": {
+    "itemPurchaseConditions": [
+      {
+        "id": "1",
+        "seller": "1",
+        "sellerChain": [
+          "1"
+        ],
+        "slas": [
+          {
+            "id": "Normal",
+            "deliveryChannel": "delivery",
+            "name": "Normal",
+            "deliveryIds": [
+              {
+                "courierId": "1",
+                "warehouseId": "1_1",
+                "dockId": "1",
+                "courierName": "Transportadora",
+                "quantity": 1,
+                "kitItemDetails": []
+              }
+            ],
+            "shippingEstimate": "3bd",
+            "shippingEstimateDate": null,
+            "lockTTL": "10d",
+            "availableDeliveryWindows": {
+              "startDateUtc": "2017-03-27T00:00:00+00:00",
+              "endDateUtc": "2017-03-27T00:00:00+00:00",
+              "price": 0,
+              "lisPrice": 0,
+              "tax": 0
+            },
+            "deliveryWindow": {
+              "startDateUtc": "2014-04-21T09:00:00+00:00",
+              "endDateUtc": "2014-04-21T12:00:00+00:00",
+              "price": 0,
+              "listprice": 1000,
+              "tax": 0
+            },
+            "price": 1500,
+            "listPrice": 1500,
+            "tax": 0,
+            "pickupStoreInfo": {
+              "isPickupStore": false,
+              "friendlyName": null,
+              "address": null,
+              "additionalInfo": null,
+              "dockId": null
+            },
+            "pickupPointId": null,
+            "pickupDistance": 0,
+            "polygonName": null,
+            "transitTime": "3bd"
+          }
+        ],
+        "price": 9999,
+        "listPrice": 9999
+      }
+    ]
+  },
+  "pickupPoints": [],
+  "subscriptionData": null,
+  "totals": [
+    {
+      "id": "Items",
+      "name": "Total dos Itens",
+      "value": 2999700
+    }
+  ],
+  "itemMetadata": {
+    "items": [
+      {
+        "id": "1",
+        "seller": "1",
+        "assemblyOptions": [
+          {
+            "id": "T-Shirt Customization",
+            "name": "T-Shirt Customization",
+            "required": false,
+            "inputValues": {
+              "T-Shirt Name": {
+                "maximumNumberOfCharacters": 2,
+                "domain": [
+                  "[]"
+                ]
+              }
+            },
+            "composition": null
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
 </CH.Code>
 
 ---
@@ -102,6 +514,11 @@ From the response content, you will be mostly using the information in `items`, 
 ```
 
 ```js Node.js
+```
+
+---
+
+```json Response
 ```
 
 </CH.Code>
@@ -179,6 +596,55 @@ const req = http.request(options, function (res) {
 });
 
 req.end();
+```
+
+---
+
+```json Response
+{
+  "userProfileId": "fb542e51-5488-4c34-8d17-ed8fcf597a94",
+  "profileProvider": "VTEX",
+  "availableAccounts": [],
+  "availableAddresses": [
+    {
+      "addressType": "residential",
+      "receiverName": "Clark Kent",
+      "addressId": "666c2e830bd9474ab6f6cc53fb6dd2d2",
+      "isDisposable": false,
+      "postalCode": "12345-000",
+      "city": "Metropolis",
+      "state": "NY",
+      "country": "USA",
+      "street": "My street",
+      "number": "123",
+      "neighborhood": "My neighborhood",
+      "complement": null,
+      "reference": null,
+      "geoCoordinates": [
+        -47.924747467041016,
+        -15.832582473754883
+      ]
+    }
+  ],
+  "userProfile": {
+    "email": "clark.kent@example.com",
+    "firstName": "Clark",
+    "lastName": "Kent",
+    "document": "12345678900",
+    "documentType": "cpf",
+    "phone": "+556199999999",
+    "corporateName": null,
+    "tradeName": null,
+    "corporateDocument": null,
+    "stateInscription": null,
+    "corporatePhone": null,
+    "isCorporate": false,
+    "profileCompleteOnLoading": null,
+    "profileErrorOnLoading": null,
+    "customerClass": null
+  },
+  "isComplete": true
+}
 ```
 
 </CH.Code>
@@ -552,18 +1018,6 @@ If the delivery method is pickup point, add the information <code>"selectedDeliv
 
 <CH.Spotlight>
 
-### Step 5 - Place the order
-
-This `orderForm` can now be sent as the body in the [Place order API request.](https://developers.vtex.com/docs/api-reference/checkout-api#put-/api/checkout/pub/orders)
-
-If you get a status `201 Created` response, take note of four pieces of information from its response content:
-
-- `orderId`: ID of the order within VTEX’s Order Management System (OMS). You can find an  `orderId` in each object in the `orders` array.
-- `transactionId`: ID of the transaction, which can be found in the objects contained in the `transactionData.merchantTransactions` array.
-- `addressId`: if you're going to use the same address for shipping and billing, get this ID from the `orders[].shippingData.address` object.
-- `Vtex_CHKO_Auth`: authentication cookie that is sent with the response.
-
->❗ Starting from the placing of the order, you have five minutes to complete the payment process. Otherwise, the order is automatically canceled and tagged `incomplete`.
 
 <CH.Code>
 
@@ -732,9 +1186,398 @@ req.write(JSON.stringify({
 req.end();
 ```
 
+---
+
+```json Response
+{
+  "orderForm": null,
+  "transactionData": {
+    "merchantTransactions": [
+      {
+        "id": "MYSTORE",
+        "transactionId": "296D6D245C17437E823EB77E403FC88D",
+        "merchantName": "MYSTORE",
+        "payments": [
+          {
+            "paymentSystem": "6",
+            "bin": null,
+            "accountId": null,
+            "tokenId": null,
+            "value": 34390,
+            "referenceValue": 34390,
+            "giftCardRedemptionCode": null,
+            "giftCardProvider": null,
+            "giftCardId": null
+          }
+        ]
+      }
+    ],
+    "receiverUri": "https://mystore.vtexpayments.com.br/split/1146512005522/payments",
+    "gatewayCallbackTemplatePath": "/checkout/gatewayCallback/1146512005522/{messageCode}"
+  },
+  "orders": [
+    {
+      "orderId": "1146512005522-01",
+      "orderGroup": "1146512005522",
+      "state": null,
+      "isCheckedIn": false,
+      "sellerOrderId": "00-1146512005522-01",
+      "storeId": null,
+      "checkedInPickupPointId": null,
+      "value": 34390,
+      "items": [
+        {
+          "uniqueId": "9D6E447B3FF64CEDA33B17C01379C119",
+          "id": "2",
+          "productId": "2",
+          "productRefId": "",
+          "refId": "CBC30L",
+          "ean": null,
+          "name": "Chopp Brahma Claro 30L",
+          "skuName": "Chopp Brahma Claro 30L",
+          "modalType": null,
+          "parentItemIndex": null,
+          "parentAssemblyBinding": null,
+          "assemblies": [],
+          "priceValidUntil": "2022-07-13T18:30:46Z",
+          "tax": 0,
+          "price": 32890,
+          "listPrice": 49900,
+          "manualPrice": null,
+          "manualPriceAppliedBy": null,
+          "sellingPrice": 32890,
+          "rewardValue": 0,
+          "isGift": false,
+          "additionalInfo": {
+            "dimension": null,
+            "brandName": "Brahma",
+            "brandId": "2000000",
+            "offeringInfo": null,
+            "offeringType": null,
+            "offeringTypeId": null
+          },
+          "preSaleDate": null,
+          "productCategoryIds": "/1/",
+          "productCategories": {
+            "1": "Bebidas"
+          },
+          "quantity": 1,
+          "seller": "1",
+          "sellerChain": [
+            "1"
+          ],
+          "imageUrl": "http://mystore.vteximg.com.br/arquivos/ids/155400-55-55/30l_v2.png?v=637303412106100000",
+          "detailUrl": "/chopp-brahma-claro-30l/p",
+          "components": [],
+          "bundleItems": [],
+          "attachments": [],
+          "attachmentOfferings": [],
+          "offerings": [],
+          "priceTags": [],
+          "availability": "available",
+          "measurementUnit": "un",
+          "unitMultiplier": 1,
+          "manufacturerCode": null,
+          "priceDefinition": {
+            "calculatedSellingPrice": 32890,
+            "total": 32890,
+            "sellingPrices": [
+              {
+                "value": 32890,
+                "quantity": 1
+              }
+            ]
+          }
+        }
+      ],
+      "sellers": [
+        {
+          "id": "1",
+          "name": "Tracking QA",
+          "logo": ""
+        }
+      ],
+      "totals": [
+        {
+          "id": "Items",
+          "name": "Total dos Itens",
+          "value": 32890
+        },
+        {
+          "id": "Discounts",
+          "name": "Total dos Descontos",
+          "value": 0
+        },
+        {
+          "id": "Shipping",
+          "name": "Total do Frete",
+          "value": 1500
+        },
+        {
+          "id": "Tax",
+          "name": "Total da Taxa",
+          "value": 0
+        }
+      ],
+      "clientProfileData": {
+        "email": "clark.kent@example.com",
+        "firstName": "Clark",
+        "lastName": "Kent",
+        "document": "12345678900",
+        "documentType": "cpf",
+        "phone": "+5521998765432",
+        "corporateName": null,
+        "tradeName": null,
+        "corporateDocument": null,
+        "stateInscription": null,
+        "corporatePhone": null,
+        "isCorporate": false,
+        "profileCompleteOnLoading": false,
+        "profileErrorOnLoading": null,
+        "customerClass": null
+      },
+      "ratesAndBenefitsData": {
+        "rateAndBenefitsIdentifiers": [],
+        "teaser": []
+      },
+      "shippingData": {
+        "address": {
+          "addressType": "residential",
+          "receiverName": "Clark Kent",
+          "addressId": "teste",
+          "isDisposable": true,
+          "postalCode": "70386000",
+          "city": "Brasília",
+          "state": "DF",
+          "country": "BRA",
+          "street": "Rua da minha casa",
+          "number": "123",
+          "neighborhood": "Copacabana",
+          "complement": "15º andar",
+          "reference": null,
+          "geoCoordinates": [
+            -47.924747467041016,
+            -15.832582473754883
+          ]
+        },
+        "logisticsInfo": [
+          {
+            "itemIndex": 0,
+            "selectedSla": "Normal",
+            "selectedDeliveryChannel": "delivery",
+            "addressId": "teste",
+            "slas": [
+              {
+                "id": "Normal",
+                "deliveryChannel": "delivery",
+                "name": "Normal",
+                "deliveryIds": [
+                  {
+                    "courierId": "1",
+                    "warehouseId": "1_1",
+                    "dockId": "1",
+                    "courierName": "Transportadora",
+                    "quantity": 1,
+                    "kitItemDetails": []
+                  }
+                ],
+                "shippingEstimate": "3bd",
+                "shippingEstimateDate": null,
+                "lockTTL": "10d",
+                "availableDeliveryWindows": [],
+                "deliveryWindow": null,
+                "price": 1500,
+                "listPrice": 1500,
+                "tax": 0,
+                "pickupStoreInfo": {
+                  "isPickupStore": false,
+                  "friendlyName": null,
+                  "address": null,
+                  "additionalInfo": null,
+                  "dockId": null
+                },
+                "pickupPointId": null,
+                "pickupDistance": 0,
+                "polygonName": null,
+                "transitTime": "3bd"
+              }
+            ],
+            "shipsTo": [
+              "BRA",
+              "COL",
+              "USA"
+            ],
+            "itemId": "2",
+            "deliveryChannels": [
+              {
+                "id": "delivery"
+              },
+              {
+                "id": "pickup-in-point"
+              }
+            ]
+          }
+        ],
+        "selectedAddresses": [
+          {
+            "addressType": "residential",
+            "receiverName": "Clark Kent",
+            "addressId": "teste",
+            "isDisposable": true,
+            "postalCode": "12345000",
+            "city": "Rio de Janeiro",
+            "state": "RJ",
+            "country": "BRA",
+            "street": "Rua da minha casa",
+            "number": "123",
+            "neighborhood": "Copacabana",
+            "complement": "15º andar",
+            "reference": null,
+            "geoCoordinates": [
+              -47.924747467041016,
+              -15.832582473754883
+            ]
+          }
+        ],
+        "availableAddresses": [
+          {
+            "addressType": "residential",
+            "receiverName": "Clark Kent",
+            "addressId": "teste",
+            "isDisposable": true,
+            "postalCode": "12345000",
+            "city": "Rio de Janeiro",
+            "state": "RJ",
+            "country": "BRA",
+            "street": "Rua da minha casa",
+            "number": "123",
+            "neighborhood": "Copacabana",
+            "complement": "15º andar",
+            "reference": null,
+            "geoCoordinates": [
+              -47.924747467041016,
+              -15.832582473754883
+            ]
+          }
+        ],
+        "pickupPoints": []
+      },
+      "paymentData": {
+        "giftCards": [],
+        "transactions": [
+          {
+            "isActive": true,
+            "transactionId": "296D6D245C17437E823EB77E403FC88D",
+            "merchantName": "MYSTORE",
+            "payments": [],
+            "sharedTransaction": false
+          }
+        ]
+      },
+      "clientPreferencesData": null,
+      "commercialConditionData": null,
+      "giftRegistryData": null,
+      "marketingData": null,
+      "storePreferencesData": {
+        "countryCode": "BRA",
+        "saveUserData": false,
+        "timeZone": "E. South America Standard Time",
+        "currencyCode": "BRL",
+        "currencyLocale": 1046,
+        "currencySymbol": "R$",
+        "currencyFormatInfo": {
+          "currencyDecimalDigits": 2,
+          "currencyDecimalSeparator": ",",
+          "currencyGroupSeparator": ".",
+          "currencyGroupSize": 3,
+          "startsWithCurrencySymbol": true
+        }
+      },
+      "openTextField": {
+        "value": null
+      },
+      "invoiceData": null,
+      "itemMetadata": {
+        "items": [
+          {
+            "id": "2",
+            "seller": "1",
+            "name": "Chopp Brahma Claro 30L",
+            "skuName": "Chopp Brahma Claro 30L",
+            "productId": "2",
+            "refId": "CBC30L",
+            "ean": null,
+            "imageUrl": "http://mystore.vteximg.com.br/arquivos/ids/155400-55-55/30l_v2.png?v=637303412106100000",
+            "detailUrl": "/chopp-brahma-claro-30l/p",
+            "assemblyOptions": []
+          }
+        ]
+      },
+      "taxData": null,
+      "customData": null,
+      "hooksData": null,
+      "changeData": null,
+      "subscriptionData": null,
+      "salesChannel": "1",
+      "followUpEmail": "6c10d76b5170456d89823b38b7c8f6ac@ct.vtex.com.br",
+      "creationDate": "2021-07-13T18:33:25.3029443Z",
+      "lastChange": "2021-07-13T18:33:27.736557Z",
+      "timeZoneCreationDate": "2021-07-13T15:33:25.3029443",
+      "timeZoneLastChange": "2021-07-13T15:33:27.736557",
+      "isCompleted": false,
+      "hostName": "mystore",
+      "merchantName": null,
+      "userType": "",
+      "roundingError": 0,
+      "allowEdition": false,
+      "allowCancellation": false,
+      "isUserDataVisible": true,
+      "allowChangeSeller": false,
+      "orderFormCreationDate": "2021-07-13T18:33:25.1313373Z"
+    }
+  ],
+  "salesAssociateData": {
+    "salesAssociateId": "seller123"
+  }
+}
+```
+
 </CH.Code>
 
-----
+---
+
+### Step 5 - Place the order
+
+This `orderForm` can now be sent as the body in the [Place order API request.](https://developers.vtex.com/docs/api-reference/checkout-api#put-/api/checkout/pub/orders)
+
+If you get a status `201 Created` response, take note of four pieces of information from its response content:
+
+- `orderId`: ID of the order within VTEX’s Order Management System (OMS). You can find an  `orderId` in each object in the `orders` array.
+- `transactionId`: ID of the transaction, which can be found in the objects contained in the `transactionData.merchantTransactions` array.
+- `addressId`: if you're going to use the same address for shipping and billing, get this ID from the `orders[].shippingData.address` object.
+- `Vtex_CHKO_Auth`: authentication cookie that is sent with the response.
+
+>❗ Starting from the placing of the order, you have five minutes to complete the payment process. Otherwise, the order is automatically canceled and tagged `incomplete`.
+
+<CH.Code>
+
+```shell Shell
+```
+
+```python Python
+```
+
+```js Node.js
+```
+
+---
+
+```json Response
+```
+
+</CH.Code>
+
+---
 
 ## Step 6. Send payment information
 
@@ -937,6 +1780,12 @@ const req = http.request(options, function (res) {
 });
 
 req.end();
+```
+
+---
+
+```json Response
+{}
 ```
 
 </CH.Code>
