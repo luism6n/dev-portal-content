@@ -370,16 +370,16 @@ The `logisticsInfo` array should contain a number of objects equal to the number
 
 > ℹ️️ For this example, we are considering a single item in the cart. To learn more and explore more complex examples see the [Place order API request documentation.](https://developers.vtex.com/docs/api-reference/checkout-api#put-/api/checkout/pub/orders)
 
-```json Body focus=3:11
+```json Body focus=3:12
 "items": [],
 "clientProfileData": {},
 "shippingData": {
     "address": {},
     "logisticsInfo": [
         {
-        "itemIndex": 0,
-        "selectedSla": "Regular",
-        "price": 100
+            "itemIndex": 0,
+            "selectedSla": "Regular",
+            "price": 100
         }
     ]
 },
@@ -535,17 +535,21 @@ If the delivery method is pickup point, add the information <code>"selectedDeliv
 
 > ℹ️️ This exemplifies a fairly simple fictitious shopping cart. The `orderForm` is actually highly customizable. Learn more about all possibilities in the [orderForm documentation.](https://developers.vtex.com/docs/guides/orderform-fields)
 
-```json Body
-{
-   "logisticsInfo": [
-            {
+```json Body focus=5:12
+"items": [],
+"clientProfileData": {},
+"shippingData": {
+    "address": {},
+    "logisticsInfo": [
+        {
             "itemIndex": 0,
             "selectedSla": "Regular",
             "price": 100,
             "selectedDeliveryChannel": "pickup-in-point"
-            }
-        ]
-    }
+        }
+    ]
+},
+"paymentData": {}
 ```
 
 </CH.Spotlight>
@@ -793,7 +797,7 @@ req.end();
 
 ---
 
-### Step 5 - Place the order
+## Step 5 - Place the order
 
 This `orderForm` can now be sent as the body in the [Place order API request.](https://developers.vtex.com/docs/api-reference/checkout-api#put-/api/checkout/pub/orders)
 
