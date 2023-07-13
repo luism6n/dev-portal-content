@@ -1,6 +1,6 @@
 ---
 title: "Test!"
-slug: "test-spotlight"
+slug: "test-slideshow"
 hidden: false
 createdAt: "2022-10-20T17:08:52.219Z"
 updatedAt: "2022-10-21T14:33:45.242Z"
