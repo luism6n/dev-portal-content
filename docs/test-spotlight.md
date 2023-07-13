@@ -183,7 +183,9 @@ req.end();
 
 </CH.Code>
 
----
+</CH.Spotlight>
+
+<CH.Spotlight>
 
 ## Step 3 - Assemble a cart
 
