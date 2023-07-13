@@ -11,7 +11,7 @@ excerpt: "Insert a synopsis of your article here"
 
 <CH.Code>
 
-```shell Shell
+```shell Shell mark=2[17:29],2[31:43]
 curl --request post \
  --url 'https://{accountname}.{environment}.com.br/api/checkout/pub/orderForms/simulation?RnbBehavior=0' \
  --header 'Accept: application/json' \
