@@ -548,7 +548,9 @@ If the delivery method is pickup point, add the information <code>"selectedDeliv
     }
 ```
 
----
+</CH.Spotlight>
+
+<CH.Spotlight>
 
 ### Step 5 - Place the order
 
