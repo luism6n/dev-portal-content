@@ -6,7 +6,7 @@ createdAt: "2021-10-25T23:13:41.287Z"
 updatedAt: "2022-10-27T18:56:50.737Z"
 ---
 
-<CH.Scrollycoding>
+<CH.Spotlight>
 
 ## Step 1 - Simulate a cart
 
@@ -167,7 +167,7 @@ req.end();
 
 </CH.Code>
 
-</CH.Scrollycoding>
+</CH.Spotlight>
 
 ## Checking the result
 
