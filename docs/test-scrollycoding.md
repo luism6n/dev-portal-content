@@ -1,13 +1,13 @@
 ---
 title: "Test!"
-slug: "test-spotlight"
+slug: "test-scrollycoding"
 hidden: false
 createdAt: "2022-10-20T17:08:52.219Z"
 updatedAt: "2022-10-21T14:33:45.242Z"
 excerpt: "Insert a synopsis of your article here"
 ---
 
-<CH.Spotlight>
+<CH.Scrollycoding>
 
 <CH.Code>
 
@@ -1032,7 +1032,7 @@ req.end();
 
 </CH.Code>
 
-</CH.Spotlight>
+</CH.Scrollycoding>
 
 ## Checking the result
 

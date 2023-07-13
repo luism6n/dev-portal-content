@@ -17,6 +17,7 @@ In order to do so, use the [Cart simulation](https://developers.vtex.com/docs/ap
 
 From the response content, you will be mostly using the information in `items`, `logisticsInfo` and `paymentData`. More information about each of them will be provided in the next steps.
 
+
 <CH.Code>
 
 ```shell Shell mark=2[17:29],2[31:43]
@@ -178,6 +179,8 @@ An [orderForm](https://developers.vtex.com/docs/guides/orderform-fields) may inc
 
 > ℹ️️ Note that we are assembling this data structure to be sent as the request body in the next step. Below, we discuss these sections briefly, but you can learn more about each field in the [Place order API request documentation.](https://developers.vtex.com/docs/api-reference/checkout-api#put-/api/checkout/pub/orders)
 
+<CH.Code show={["Body"]}>
+
 ```json Body focus=5,13,25,20
 {
   "allowManualPrice": boolean,
@@ -213,6 +216,8 @@ An [orderForm](https://developers.vtex.com/docs/guides/orderform-fields) may inc
 }
 ```
 
+</CH.Code>
+
 ---
 
 ### items
@@ -224,6 +229,8 @@ Obtain the necessary information from the `items` array in the cart simulation r
 Then, build a block with the following structure.
 
 > ℹ️️ For this example, we are considering a single item in the cart. To learn more and explore more complex examples see the [Place order API request documentation.](https://developers.vtex.com/docs/api-reference/checkout-api#put-/api/checkout/pub/orders)
+
+<CH.Code show={["Body"]}>
 
 ```json Body focus=1:8
 "items": [
@@ -242,11 +249,15 @@ Then, build a block with the following structure.
 "paymentData": {}
 ```
 
+</CH.Code>
+
 ---
 
 ### clientProfileData: New clients
 
 This object contains information about the shopper. Consider this format for new customers willing to create an account.
+
+<CH.Code show={["Body"]}>
 
 ```json Body focus=2:15
 "items": [],
@@ -271,6 +282,8 @@ This object contains information about the shopper. Consider this format for new
 "paymentData": {}
 ```
 
+</CH.Code>
+
 ---
 
 ### clientProfileData: Existing clients
@@ -278,6 +291,8 @@ This object contains information about the shopper. Consider this format for new
 For [customers already in your database](https://developers.vtex.com/docs/guides/create-a-regular-order-using-the-checkout-api#2-check-if-a-customer-already-exists-in-your-database), sending only the email address is enough to register the order to the shopper’s existing account.
 
 >❗ If the shopper exists in you database but is not logged in, sending other profile information along with the email will cause the platform to fail placing the order. This happens because this action is interpreted as an attempt to edit profile data, which is not possible unless the customer is logged in to the store.
+
+<CH.Code show={["Body"]}>
 
 ```json Body focus=2:4
 "items": [],
@@ -291,11 +306,15 @@ For [customers already in your database](https://developers.vtex.com/docs/guides
 "paymentData": {}
 ```
 
+</CH.Code>
+
 ---
 
 ### shippingData.address
 
 This object contains shipping address information.
+
+<CH.Code show={["Body"]}>
 
 ```json Body focus=3:18
 "items": [],
@@ -319,11 +338,15 @@ This object contains shipping address information.
 "paymentData": {}
 ```
 
+</CH.Code>
+
 ---
 
 ### shippingData.address: Existing clients
 
 For [customers already in your data base](https://developers.vtex.com/docs/guides/create-a-regular-order-using-the-checkout-api#2-check-if-a-customer-already-exists-in-your-database), it is enough to send this object only with an `addressId`, which you may get from [step two](https://developers.vtex.com/docs/guides/create-a-regular-order-using-the-checkout-api#2-check-if-a-customer-already-exists-in-your-database).
+
+<CH.Code show={["Body"]}>
 
 ```json Body focus=3:7
 "items": [],
@@ -335,6 +358,8 @@ For [customers already in your data base](https://developers.vtex.com/docs/guide
 },
 "paymentData": {}
 ```
+
+</CH.Code>
 
 ---
 
@@ -348,21 +373,25 @@ The `logisticsInfo` array should contain a number of objects equal to the number
 
 > ℹ️️ For this example, we are considering a single item in the cart. To learn more and explore more complex examples see the [Place order API request documentation.](https://developers.vtex.com/docs/api-reference/checkout-api#put-/api/checkout/pub/orders)
 
-```json Body focus=3:11
+<CH.Code show={["Body"]}>
+
+```json Body focus=3:12
 "items": [],
 "clientProfileData": {},
 "shippingData": {
     "address": {},
     "logisticsInfo": [
         {
-        "itemIndex": 0,
-        "selectedSla": "Regular",
-        "price": 100
+            "itemIndex": 0,
+            "selectedSla": "Regular",
+            "price": 100
         }
     ]
 },
 "paymentData": {}
 ```
+
+</CH.Code>
 
 ---
 
@@ -375,6 +404,8 @@ Note that the `value` field corresponds to the full value to be payed by the sho
 > ℹ️️ For this example, we are considering a single payment method, with a single installment and no interest. To learn more and explore more complex examples see the [Place order API request documentation.](https://developers.vtex.com/docs/api-reference/checkout-api#put-/api/checkout/pub/orders)
 
 Use the options and information from the [simulation](https://developers.vtex.com/docs/guides/create-a-regular-order-using-the-checkout-api#1-simulate-a-cart) response data to assemble your own `paymentData`.
+
+<CH.Code show={["Body"]}>
 
 ```json Body focus=7:16
 "items": [],
@@ -395,11 +426,15 @@ Use the options and information from the [simulation](https://developers.vtex.co
 }
 ```
 
+</CH.Code>
+
 ---
 
 ## Step 4 - Review the `orderForm`
 
 When you are done consolidating all of your shopping cart information, your `orderForm` should look something like this.
+
+<CH.Code show={["Body"]}>
 
 ```json Body
 {
@@ -461,11 +496,15 @@ When you are done consolidating all of your shopping cart information, your `ord
 }
 ```
 
+</CH.Code>
+
 ---
 
 ### Returning customer
 
 For a returning customer, it may be something like this.
+
+<CH.Code show={["Body"]}>
 
 ```json Body
 {
@@ -505,6 +544,8 @@ For a returning customer, it may be something like this.
 }
 ```
 
+</CH.Code>
+
 ---
 
 ### Pickup delivery
@@ -513,22 +554,30 @@ If the delivery method is pickup point, add the information <code>"selectedDeliv
 
 > ℹ️️ This exemplifies a fairly simple fictitious shopping cart. The `orderForm` is actually highly customizable. Learn more about all possibilities in the [orderForm documentation.](https://developers.vtex.com/docs/guides/orderform-fields)
 
-```json Body
-{
-   "logisticsInfo": [
-            {
+<CH.Code show={["Body"]}>
+
+```json Body focus=5:12
+"items": [],
+"clientProfileData": {},
+"shippingData": {
+    "address": {},
+    "logisticsInfo": [
+        {
             "itemIndex": 0,
             "selectedSla": "Regular",
             "price": 100,
             "selectedDeliveryChannel": "pickup-in-point"
-            }
-        ]
-    }
+        }
+    ]
+},
+"paymentData": {}
 ```
+
+</CH.Code>
 
 ---
 
-### Step 5 - Place the order
+## Step 5 - Place the order
 
 This `orderForm` can now be sent as the body in the [Place order API request.](https://developers.vtex.com/docs/api-reference/checkout-api#put-/api/checkout/pub/orders)
 
@@ -541,7 +590,7 @@ If you get a status `201 Created` response, take note of four pieces of informat
 
 >❗ Starting from the placing of the order, you have five minutes to complete the payment process. Otherwise, the order is automatically canceled and tagged `incomplete`.
 
-<CH.Code>
+<CH.Code show={["Shell", "Python", "Node.js", "Body"]}>
 
 ```shell Shell mark=2[17:29],2[31:43]
 curl --request put \
@@ -792,7 +841,7 @@ The information you send in this step’s request body should be based on the `p
 
 >❗ Make sure that all value-related fields match the information sent in [step four](https://developers.vtex.com/docs/guides/create-a-regular-order-using-the-checkout-api#4-place-the-order), when placing the order.
 
-<CH.Code>
+<CH.Code show={["Shell", "Python", "Node.js", "Body"]}>
 
 ```shell Shell mark=2[17:29],2[31:43]
 curl --request post \
@@ -895,7 +944,7 @@ At this point, if everything is ok with the payment, the order should be placed.
 
 > Be aware that this process uses the gateway connectors configured in your VTEX environment. Be careful to avoid any unwanted charges or unexpected payment denials.
 
-<CH.Code>
+<CH.Code show={["Shell", "Python", "Node.js", "Body"]}>
 
 ```shell Shell mark=2[17:29],2[31:43]
 curl --request post \
@@ -970,7 +1019,6 @@ req.end();
 </CH.Code>
 
 </CH.Slideshow>
-
 
 ## Checking the result
 
