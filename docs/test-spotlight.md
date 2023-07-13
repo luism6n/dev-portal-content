@@ -187,6 +187,43 @@ req.end();
 
 <CH.Spotlight>
 
+```json Response
+{
+  "allowManualPrice": boolean,
+  "canEditData": boolean,
+  "clientPreferencesData": {},
+  "clientProfileData": {},
+  "commercialConditionData": {},
+  "customData": {},
+  "giftRegistryData": {},
+  "hooksData": {},
+  "ignoreProfileData": boolean,
+  "isCheckedIn": boolean,
+  "itemMetadata": {},
+  "items": {},
+  "itemsOrdination": {},
+  "loggedIn": boolean,
+  "marketingData": {},
+  "messages": [],
+  "openTextField": {},
+  "orderFormId": string,
+  "paymentData": {},  
+  "ratesAndBenefitsData": {},
+  "salesChannel": "1",
+  "selectableGifts": {},
+  "sellers": {},
+  "shippingData": {},
+  "storeId": {},
+  "storePreferencesData": {},
+  "totalizers": {},
+  "userProfileId": {},
+  "userType": {},
+  "value": number
+}
+```
+
+---
+
 ## Step 3 - Assemble a cart
 
 Assembling a cart from an API point of view means getting all order information into the appropriate data structure, the [orderForm](https://developers.vtex.com/docs/guides/orderform-fields).
@@ -195,14 +232,7 @@ An [orderForm](https://developers.vtex.com/docs/guides/orderform-fields) may inc
 
 > ℹ️️ Note that we are assembling this data structure to be sent as the request body in the next step. Below, we discuss these sections briefly, but you can learn more about each field in the [Place order API request documentation.](https://developers.vtex.com/docs/api-reference/checkout-api#put-/api/checkout/pub/orders)
 
-```json Response
-"items": [],
-"clientProfileData": {},
-"shippingData": {
-    "address": {},
-    "logisticsInfo": []
-},
-"paymentData": {}
+```json Response focus=1:7```json Response focus=5,13,25,20
 ```
 
 ---
