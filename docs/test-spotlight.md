@@ -129,7 +129,7 @@ curl --request get \
  --header 'X-VTEX-API-AppToken: '
 ```
 
-```python Python
+```python Python mark=3[37:49],3[51:63]
 import http.client
 
 conn = http.client.HTTPSConnection("{accountname}.{environment}.com.br")
@@ -149,7 +149,7 @@ data = res.read()
 print(data.decode("utf-8"))
 ```
 
-```js Node.js
+```js Node.js mark=5[15:27],5[29:41]
 const http = require("https");
 
 const options = {
