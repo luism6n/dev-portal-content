@@ -11,6 +11,21 @@ excerpt: "Insert a synopsis of your article here"
 
 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quia! Quidem, quisquam.
 
+<CH.Code>
+
+```shell Shell
+curl --request post \
+  # withClass[16] placeholder
+ --url 'https://.{environment}.com.br/api/checkout/pub/orderForms/simulation?RnbBehavior=0' \
+ --header 'Accept: application/json' \
+ --header 'Content-Type: application/json' \
+ --header 'X-VTEX-API-AppKey: ' \
+ --header 'X-VTEX-API-AppToken: ' \
+ --data '{"items":[{"id":"1","quantity":1,"seller":"1"}],"country":"BRA","postalCode":"12345-000","geoCoordinates":[-47.924747467041016]}'
+```
+
+</CH.Code>
+
 <CH.Spotlight>
 
 ```json home.jsonc
