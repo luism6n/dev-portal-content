@@ -10,23 +10,20 @@ hideTOC: true
 
 This tutorial will teach you how to use our APIs to place a regular order (placed, paid, and delivered under the liability of a single account). To do this, we will follow these steps:
 
-1. [Simulate a cart](#1-simulate-a-cart): Find out the available delivery and payment options.
-
-1. [Check if the customer already exists in your database](#2-check-if-a-customer-already-exists-in-your-database): Ensure the order can be placed by checking if the customer email already exists in your database.
-
-2. [Assemble a cart](#3-assemble-a-cart): Assemble all necessary order information in the correct format.
-
-3. [Place the order](#4-place-the-order): Place the order on the VTEX platform.
-
-4. [Send payment information](#5-send-payment-information): Notify VTEX that you have payment information ready to proceed.
-
-5. [Request order processing](#6-request-order-processing): Request order processing information from the payments module.
+1. **Simulate a cart:** Find out the available delivery and payment options.
+2. **Check if the customer already exists in your database:** Ensure the order can be placed by checking if the customer email already exists in your database.
+3. **Assemble a cart:** Assemble all necessary order information in the correct format.
+4. **Place the order:** Place the order on the VTEX platform.
+5. **Send payment information:** Notify VTEX that you have payment information ready to proceed.
+6. **Request order processing:** Request order processing information from the payments module.
 
 And by the end of this process you may [check the result.](#checking-the-result)
 
 ## Before you start
 
 For any authentication required by the APIs presented in this tutorial, you must provide a valid `appToken` and `appKey` registered in the **License Manager** module of your account and empowered with enough permissions. Learn more in this article about [Roles.](https://help.vtex.com/en/tutorial/roles--7HKK5Uau2H6wxE1rH5oRbc#)
+
+## Step by step
 
 <CH.Spotlight>
 
@@ -143,7 +140,7 @@ req.end();
 
 ---
 
-## Step 1 - Simulate a cart
+### Step 1 - Simulate a cart
 
 The initial step is to ensure your store can fulfill the cart requirements. In order to do so, use the [Cart simulation](https://developers.vtex.com/docs/api-reference/checkout-api#post-/api/checkout/pub/orderForms/simulation) API request. You must provide an SKU ID, the quantity of items in the cart and the ID of the Seller.
 
@@ -171,7 +168,7 @@ From the response content, you will be mostly using the information in `items`, 
 
 ---
 
-## Step 2 - Check if a customer already exists in your database
+### Step 2 - Check if a customer already exists in your database
 
 Whenever you attempt to place an order, you must provide an email address to identify the shopper. Typically, once an order gets successfully placed, the provided email address is assigned to a client profile on your store.
 
@@ -248,11 +245,17 @@ req.end();
 
 ---
 
-## Step 3 - Assemble a cart
+### Step 3 - Assemble a cart
 
 Assembling a cart from an API point of view means getting all order information into the appropriate data structure, the [orderForm](https://developers.vtex.com/docs/guides/orderform-fields).
 
-An [orderForm](https://developers.vtex.com/docs/guides/orderform-fields) may include many elements, but for a simple order, we can focus on the main five.
+An [orderForm](https://developers.vtex.com/docs/guides/orderform-fields) may include many elements, but for a simple order, we can focus on the following:
+
+- `items`
+- `clientProfileData`
+- `shippingData.address`
+- `shippingData.logisticsInfo`
+- `paymentData`
 
 > ℹ️️ Note that we are assembling this data structure to be sent as the request body in the next step. Below, we discuss these sections briefly, but you can learn more about each field in the [Place order API request documentation.](https://developers.vtex.com/docs/api-reference/checkout-api#put-/api/checkout/pub/orders)
 
@@ -507,7 +510,7 @@ Use the options and information from the [simulation](#1-simulate-a-cart) respon
 
 ---
 
-## Step 4 - Review the `orderForm`
+### Step 4 - Review the `orderForm`
 
 When you are done consolidating all of your shopping cart information, your `orderForm` should look something like this.
 
@@ -654,7 +657,7 @@ If the delivery method is pickup point, add the information <code>"selectedDeliv
 
 ---
 
-## Step 5 - Place the order
+### Step 5 - Place the order
 
 This `orderForm` can now be sent as the body in the [Place order API request.](https://developers.vtex.com/docs/api-reference/checkout-api#put-/api/checkout/pub/orders)
 
@@ -908,7 +911,7 @@ req.end();
 
 ---
 
-## Step 6. Send payment information
+### Step 6. Send payment information
 
 With the `orderId` and `transactionId` values in hand, you must now inform VTEX of the payment data that should be used to resolve the order payment. To do this, use the [Send payment information API request](https://developers.vtex.com/docs/api-reference/payments-gateway-api#post-/api/pub/transactions/-transactionId-/payments). Note that there is also an alternative [private request for sending payment information](https://developers.vtex.com/docs/api-reference/payments-gateway-api#post-/api/pvt/transactions/-transactionId-/payments), that can be used to send saved credit card data.
 
@@ -1013,7 +1016,7 @@ req.end();
 
 ---
 
-## Step 7. Request order processing
+### Step 7. Request order processing
 
 Finally, you must request the processing of the order with the [Process order API request](https://developers.vtex.com/docs/api-reference/checkout-api#post-/api/checkout/pub/gatewayCallback/-orderGroup-).
 
