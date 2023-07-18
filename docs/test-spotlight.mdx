@@ -1,12 +1,32 @@
 ---
-title: "Test!"
+title: "Create a regular order using the Checkout API"
 slug: "test-spotlight"
 hidden: false
-createdAt: "2022-10-20T17:08:52.219Z"
-updatedAt: "2022-10-21T14:33:45.242Z"
-excerpt: "Insert a synopsis of your article here"
+createdAt: "2023-07-18T17:08:52.219Z"
+updatedAt: "2023-07-18T17:08:52.219Z"
+excerpt: "Learn how place orders using VTEX APIs to handle shopping carts and checkout."
 hideTOC: true
 ---
+
+This tutorial will teach you how to use our APIs to place a regular order (placed, paid, and delivered under the liability of a single account). To do this, we will follow these steps:
+
+1. [Simulate a cart](#1-simulate-a-cart): Find out the available delivery and payment options.
+
+1. [Check if the customer already exists in your database](#2-check-if-a-customer-already-exists-in-your-database): Ensure the order can be placed by checking if the customer email already exists in your database.
+
+2. [Assemble a cart](#3-assemble-a-cart): Assemble all necessary order information in the correct format.
+
+3. [Place the order](#4-place-the-order): Place the order on the VTEX platform.
+
+4. [Send payment information](#5-send-payment-information): Notify VTEX that you have payment information ready to proceed.
+
+5. [Request order processing](#6-request-order-processing): Request order processing information from the payments module.
+
+And by the end of this process you may [check the result.](#checking-the-result)
+
+## Before you start
+
+For any authentication required by the APIs presented in this tutorial, you must provide a valid `appToken` and `appKey` registered in the **License Manager** module of your account and empowered with enough permissions. Learn more in this article about [Roles.](https://help.vtex.com/en/tutorial/roles--7HKK5Uau2H6wxE1rH5oRbc#)
 
 <CH.Spotlight>
 
@@ -82,17 +102,54 @@ req.write(JSON.stringify({
 req.end();
 ```
 
+---
+
+```json Response
+{
+  "allowManualPrice": boolean,
+  "canEditData": boolean,
+  "clientPreferencesData": {},
+  "clientProfileData": {},
+  "commercialConditionData": {},
+  "customData": {},
+  "giftRegistryData": {},
+  "hooksData": {},
+  "ignoreProfileData": boolean,
+  "isCheckedIn": boolean,
+  "itemMetadata": {},
+  "items": {},
+  "itemsOrdination": {},
+  "loggedIn": boolean,
+  "marketingData": {},
+  "messages": [],
+  "openTextField": {},
+  "orderFormId": string,
+  "paymentData": {},  
+  "ratesAndBenefitsData": {},
+  "salesChannel": "1",
+  "selectableGifts": {},
+  "sellers": {},
+  "shippingData": {},
+  "storeId": {},
+  "storePreferencesData": {},
+  "totalizers": {},
+  "userProfileId": {},
+  "userType": {},
+  "value": number
+}
+```
+
 </CH.Code>
 
 ---
 
 ## Step 1 - Simulate a cart
 
-The very first thing that you should do is to check if your store is able to fulfill the cart. A simulation request is how your system will know which delivery and payment options are available for a given combination of items in a cart.
+The initial step is to ensure your store can fulfill the cart requirements. In order to do so, use the [Cart simulation](https://developers.vtex.com/docs/api-reference/checkout-api#post-/api/checkout/pub/orderForms/simulation) API request. You must provide an SKU ID, the quantity of items in the cart and the ID of the Seller.
 
-In order to do so, use the [Cart simulation](https://developers.vtex.com/docs/api-reference/checkout-api#post-/api/checkout/pub/orderForms/simulation) API request.
+The `Cart simulation` request will inform your system about the available delivery and payment options available to the specific combination of items in the cart.
 
-From the response content, you will be mostly using the information in `items`, `logisticsInfo` and `paymentData`. More information about each of them will be provided in the next steps.
+From the response content, you will be mostly using the information in `items`, `shippingData.logisticsInfo` and `paymentData`. More information about each of them will be provided in the next steps.
 
 <CH.Code>
 
@@ -103,6 +160,11 @@ From the response content, you will be mostly using the information in `items`, 
 ```
 
 ```js Node.js mark=5[15:27],5[29:41]
+```
+
+---
+
+```json Response focus=13,20,25
 ```
 
 </CH.Code>
@@ -121,9 +183,9 @@ If the response to this request returns any content, it means that you already h
 
 <CH.Code>
 
-```shell Shell mark=2[17:29],2[31:43]
+```shell Shell mark=2[17:29],2[31:43],2[84:97]
 curl --request get \
- --url 'https://{accountname}.{environment}.com.br/api/checkout/pub/profiles?ensureComplete=true' \
+ --url 'https://{accountname}.{environment}.com.br/api/checkout/pub/profiles?email={emailAddress}' \
  --header 'Accept: application/json' \
  --header 'Content-Type: application/json' \
  --header 'X-VTEX-API-AppKey: ' \
@@ -303,7 +365,7 @@ This object contains information about the shopper. Consider this format for new
 
 ### clientProfileData: Existing clients
 
-For [customers already in your database](https://developers.vtex.com/docs/guides/create-a-regular-order-using-the-checkout-api#2-check-if-a-customer-already-exists-in-your-database), sending only the email address is enough to register the order to the shopper’s existing account.
+For [customers already in your database](#2-check-if-a-customer-already-exists-in-your-database), sending only the email address is enough to register the order to the shopper’s existing account.
 
 >❗ If the shopper exists in you database but is not logged in, sending other profile information along with the email will cause the platform to fail placing the order. This happens because this action is interpreted as an attempt to edit profile data, which is not possible unless the customer is logged in to the store.
 
@@ -359,7 +421,7 @@ This object contains shipping address information.
 
 ### shippingData.address: Existing clients
 
-For [customers already in your data base](https://developers.vtex.com/docs/guides/create-a-regular-order-using-the-checkout-api#2-check-if-a-customer-already-exists-in-your-database), it is enough to send this object only with an `addressId`, which you may get from [step two](https://developers.vtex.com/docs/guides/create-a-regular-order-using-the-checkout-api#2-check-if-a-customer-already-exists-in-your-database).
+For [customers already in your data base](#2-check-if-a-customer-already-exists-in-your-database), it is enough to send this object only with an `addressId`, which you may get from [step two](#2-check-if-a-customer-already-exists-in-your-database).
 
 <CH.Code show={["Body"]}>
 
@@ -382,7 +444,7 @@ For [customers already in your data base](https://developers.vtex.com/docs/guide
 
 This is an array that contains logistics information for each item in the `items` array, including the selected delivery option and freight cost.
 
-The `selectedSla` field indicates the selected delivery option. You can choose an `id` value, from among the options in the `slas` array obtained in the [Cart simulation step](https://developers.vtex.com/docs/guides/create-a-regular-order-using-the-checkout-api#1-simulate-a-cart). The corresponding `price` can also be found in the simulation response data, in the same object.
+The `selectedSla` field indicates the selected delivery option. You can choose an `id` value, from among the options in the `slas` array obtained in the [Cart simulation step](#1-simulate-a-cart). The corresponding `price` can also be found in the simulation response data, in the same object.
 
 The `logisticsInfo` array should contain a number of objects equal to the number of objects in the `items` array. The `itemIndex` of a `logisticsInfo` object indicates to which item of the array `items` that information is referring. The object referring to the first item in `items` will contain an `itemIndex` of `0` and so on.
 
@@ -418,7 +480,7 @@ Note that the `value` field corresponds to the full value to be payed by the sho
 
 > ℹ️️ For this example, we are considering a single payment method, with a single installment and no interest. To learn more and explore more complex examples see the [Place order API request documentation.](https://developers.vtex.com/docs/api-reference/checkout-api#put-/api/checkout/pub/orders)
 
-Use the options and information from the [simulation](https://developers.vtex.com/docs/guides/create-a-regular-order-using-the-checkout-api#1-simulate-a-cart) response data to assemble your own `paymentData`.
+Use the options and information from the [simulation](#1-simulate-a-cart) response data to assemble your own `paymentData`.
 
 <CH.Code show={["Body"]}>
 
@@ -854,7 +916,7 @@ The information you send in this step’s request body should be based on the `p
 
 > ℹ️️ In the `fields` object, you can send an `addressId` to use an existing address or a new `address` object.
 
->❗ Make sure that all value-related fields match the information sent in [step four](https://developers.vtex.com/docs/guides/create-a-regular-order-using-the-checkout-api#4-place-the-order), when placing the order.
+>❗ Make sure that all value-related fields match the information sent in [step four](#4-place-the-order), when placing the order.
 
 <CH.Code show={["Shell", "Python", "Node.js", "Response"]}>
 
