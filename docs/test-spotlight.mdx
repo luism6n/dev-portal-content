@@ -8,16 +8,7 @@ excerpt: "Learn how place orders using VTEX APIs to handle shopping carts and ch
 hideTOC: true
 ---
 
-This tutorial will teach you how to use our APIs to place a regular order (placed, paid, and delivered under the liability of a single account). To do this, we will follow these steps:
-
-1. **Simulate a cart:** Find out the available delivery and payment options.
-2. **Check if the customer already exists in your database:** Ensure the order can be placed by checking if the customer email already exists in your database.
-3. **Assemble a cart:** Assemble all necessary order information in the correct format.
-4. **Place the order:** Place the order on the VTEX platform.
-5. **Send payment information:** Notify VTEX that you have payment information ready to proceed.
-6. **Request order processing:** Request order processing information from the payments module.
-
-And by the end of this process you may [check the result.](#checking-the-result)
+This tutorial guides you on using our APIs to place a regular order with all responsibilities centralized under a single account. Follow these steps to accomplish the process smoothly. First, simulate a cart to explore available delivery and payment options. Next, check if the customer already exists in your database by verifying their email adress. Assemble the cart by organizing all essential order information correctly. Then, place the order on the VTEX platform. Notify VTEX with the payment information to proceed. Finally, request order processing details from the payments module and conclude the process by checking the result.
 
 ## Before you start
 
@@ -168,7 +159,7 @@ From the response content, you will be mostly using the information in `items`, 
 
 ---
 
-### Step 2 - Check if a customer already exists in your database
+### Step 2 - Check if the customer already exists in your database
 
 Whenever you attempt to place an order, you must provide an email address to identify the shopper. Typically, once an order gets successfully placed, the provided email address is assigned to a client profile on your store.
 
@@ -176,7 +167,7 @@ Therefore, it is a good idea to verify if a given email address is already linke
 
 To check an email address for existing profiles, just send use the [Get client by email](https://developers.vtex.com/docs/api-reference/checkout-api#get-/api/checkout/pub/profiles) API request.
 
-If the response to this request returns any content, it means that you already have this customer’s information on your store’s data base. In this case, you can use that information in the next steps without having to ask the shopper to provide it to you again.
+If the response to this request returns any content, it means that you already have this customer’s information on your store’s database. In this case, you can use that information in the next steps without having to ask the shopper to provide it to you again.
 
 <CH.Code>
 
@@ -241,6 +232,52 @@ const req = http.request(options, function (res) {
 req.end();
 ```
 
+---
+
+```json Response
+{
+  "userProfileId": string,
+  "profileProvider": string,
+  "availableAccounts": [],
+  "availableAddresses": [
+    {
+      "addressType": string,
+      "receiverName": string,
+      "addressId": string,
+      "isDisposable": boolean,
+      "postalCode": string,
+      "city": string,
+      "state": string,
+      "country": string,
+      "street": string,
+      "number": string,
+      "neighborhood": string,
+      "complement": null,
+      "reference": null,
+      "geoCoordinates": []
+    }
+  ],
+  "userProfile": {
+    "email": string,
+    "firstName": string,
+    "lastName": string,
+    "document": string,
+    "documentType": string,
+    "phone": string,
+    "corporateName": null,
+    "tradeName": null,
+    "corporateDocument": null,
+    "stateInscription": null,
+    "corporatePhone": null,
+    "isCorporate": boolean,
+    "profileCompleteOnLoading": null,
+    "profileErrorOnLoading": null,
+    "customerClass": null
+  },
+  "isComplete": boolean
+}
+```
+
 </CH.Code>
 
 ---
@@ -300,7 +337,7 @@ An [orderForm](https://developers.vtex.com/docs/guides/orderform-fields) may inc
 
 ---
 
-### items
+#### items
 
 This is the core of your order, an array that contains all data pertinent to the SKUs being purchased.
 
@@ -312,61 +349,65 @@ Then, build a block with the following structure.
 
 <CH.Code show={["Body"]}>
 
-```json Body focus=1:8
-"items": [
-    {
-        "id": "1",
-        "quantity": 1,
-        "seller": "1",
-        "price": 10000
-    }
-],
-"clientProfileData": {},
-"shippingData": {
-    "address": {},
-    "logisticsInfo": []
-},
-"paymentData": {}
+```json Body focus=2:9
+{
+  "items": [
+      {
+          "id": "1",
+          "quantity": 1,
+          "seller": "1",
+          "price": 10000
+      }
+  ],
+  "clientProfileData": {},
+  "shippingData": {
+      "address": {},
+      "logisticsInfo": []
+  },
+  "paymentData": {}
+}
 ```
 
 </CH.Code>
 
 ---
 
-### clientProfileData: New clients
+#### clientProfileData: New clients
 
 This object contains information about the shopper. Consider this format for new customers willing to create an account.
 
 <CH.Code show={["Body"]}>
 
-```json Body focus=2:15
-"items": [],
-"clientProfileData": {
-    "email": "email@domain.com",
-    "firstName": "Testing",
-    "lastName": "VTEX",
-    "document": "078051120",
-    "documentType": "ssn",
-    "phone": "1234567890",
-    "corporateName": null,
-    "tradeName": null,
-    "corporateDocument": null,
-    "stateInscription": null,
-    "corporatePhone": null,
-    "isCorporate": false
-},
-"shippingData": {
-    "address": {},
-    "logisticsInfo": []
-},
-"paymentData": {}
+```json Body focus=3:16
+{
+  "items": [],
+  "clientProfileData": {
+      "email": "email@domain.com",
+      "firstName": "Testing",
+      "lastName": "VTEX",
+      "document": "078051120",
+      "documentType": "ssn",
+      "phone": "1234567890",
+      "corporateName": null,
+      "tradeName": null,
+      "corporateDocument": null,
+      "stateInscription": null,
+      "corporatePhone": null,
+      "isCorporate": false
+  },
+  "shippingData": {
+      "address": {},
+      "logisticsInfo": []
+  },
+  "paymentData": {}
+}
 ```
 
 </CH.Code>
 
 ---
 
-### clientProfileData: Existing clients
+#### clientProfileData: Existing clients
 
 For [customers already in your database](#2-check-if-a-customer-already-exists-in-your-database), sending only the email address is enough to register the order to the shopper’s existing account.
 
@@ -374,76 +415,82 @@ For [customers already in your database](#2-check-if-a-customer-already-exists-i
 
 <CH.Code show={["Body"]}>
 
-```json Body focus=2:4
-"items": [],
-"clientProfileData": {
-    "email": "email@domain.com"
-},
-"shippingData": {
-    "address": {},
-    "logisticsInfo": []
-},
-"paymentData": {}
+```json Body focus=3:5
+{
+  "items": [],
+  "clientProfileData": {
+      "email": "email@domain.com"
+  },
+  "shippingData": {
+      "address": {},
+      "logisticsInfo": []
+  },
+  "paymentData": {}
+}
 ```
 
 </CH.Code>
 
 ---
 
-### shippingData.address
+#### shippingData.address
 
 This object contains shipping address information.
 
 <CH.Code show={["Body"]}>
 
-```json Body focus=3:18
-"items": [],
-"clientProfileData": {},
-"shippingData": {
-    "address": {
-        "addressType": "residential",
-        "receiverName": "Testing VTEX",
-        "postalCode": "33301",
-        "city": "Fort Lauderdale",
-        "state": "FL",
-        "country": "USA",
-        "street": "110 East Broward Blvd",
-        "number": null,
-        "neighborhood": null,
-        "complement": "Suite 1700",
-        "reference": null,
-        "geoCoordinates": []
-    }
-},
-"paymentData": {}
+```json Body focus=4:19
+{
+  "items": [],
+  "clientProfileData": {},
+  "shippingData": {
+      "address": {
+          "addressType": "residential",
+          "receiverName": "Testing VTEX",
+          "postalCode": "33301",
+          "city": "Fort Lauderdale",
+          "state": "FL",
+          "country": "USA",
+          "street": "110 East Broward Blvd",
+          "number": null,
+          "neighborhood": null,
+          "complement": "Suite 1700",
+          "reference": null,
+          "geoCoordinates": []
+      }
+  },
+  "paymentData": {}
+}
 ```
 
 </CH.Code>
 
 ---
 
-### shippingData.address: Existing clients
+#### shippingData.address: Existing clients
 
 For [customers already in your data base](#2-check-if-a-customer-already-exists-in-your-database), it is enough to send this object only with an `addressId`, which you may get from [step two](#2-check-if-a-customer-already-exists-in-your-database).
 
 <CH.Code show={["Body"]}>
 
-```json Body focus=3:7
-"items": [],
-"clientProfileData": {},
-"shippingAddress": {
-    "address": {
-        "addressId": "666c2e830bd9474ab6f6cc53fb6dd2d2"
-    }
-},
-"paymentData": {}
+```json Body focus=4:8
+{
+  "items": [],
+  "clientProfileData": {},
+  "shippingAddress": {
+      "address": {
+          "addressId": "666c2e830bd9474ab6f6cc53fb6dd2d2"
+      }
+  },
+  "paymentData": {}
+}
 ```
 
 </CH.Code>
 
 ---
 
-### shippingData.logisticsInfo
+#### shippingData.logisticsInfo
 
 This is an array that contains logistics information for each item in the `items` array, including the selected delivery option and freight cost.
 
@@ -455,10 +502,11 @@ The `logisticsInfo` array should contain a number of objects equal to the number
 
 <CH.Code show={["Body"]}>
 
-```json Body focus=3:12
-"items": [],
-"clientProfileData": {},
-"shippingData": {
+```json Body focus=4:13
+{
+  "items": [],
+  "clientProfileData": {},
+  "shippingData": {
     "address": {},
     "logisticsInfo": [
         {
@@ -467,15 +515,16 @@ The `logisticsInfo` array should contain a number of objects equal to the number
             "price": 100
         }
     ]
-},
-"paymentData": {}
+  },
+  "paymentData": {}
+}
 ```
 
 </CH.Code>
 
 ---
 
-### paymentData
+#### paymentData
 
 This object informs the payment method and installment options (if available) selected for the order.
 
@@ -487,22 +536,24 @@ Use the options and information from the [simulation](#1-simulate-a-cart) respon
 
 <CH.Code show={["Body"]}>
 
-```json Body focus=7:16
-"items": [],
-"clientProfileData": {},
-"shippingData": {
-    "address": {},
-    "logisticsInfo": []
-},
-"paymentData": {
-    "payments": [
-        {
-            "paymentSystem": "1",
-            "referenceValue": 10100,
-            "value": 10100,
-            "installments": 1
-        }
-    ]
+```json Body focus=8:17
+{
+  "items": [],
+  "clientProfileData": {},
+  "shippingData": {
+      "address": {},
+      "logisticsInfo": []
+  },
+  "paymentData": {
+      "payments": [
+          {
+              "paymentSystem": "1",
+              "referenceValue": 10100,
+              "value": 10100,
+              "installments": 1
+          }
+      ]
+  }
 }
 ```
 
@@ -580,7 +631,7 @@ When you are done consolidating all of your shopping cart information, your `ord
 
 ---
 
-### Returning customer
+### Existing customer
 
 For a returning customer, it may be something like this.
 
@@ -637,20 +688,22 @@ If the delivery method is pickup point, add the information <code>"selectedDeliv
 <CH.Code show={["Body"]}>
 
 ```json Body focus=5:12
-"items": [],
-"clientProfileData": {},
-"shippingData": {
-    "address": {},
-    "logisticsInfo": [
-        {
-            "itemIndex": 0,
-            "selectedSla": "Regular",
-            "price": 100,
-            "selectedDeliveryChannel": "pickup-in-point"
-        }
-    ]
-},
-"paymentData": {}
+{
+  "items": [],
+  "clientProfileData": {},
+  "shippingData": {
+      "address": {},
+      "logisticsInfo": [
+          {
+              "itemIndex": 0,
+              "selectedSla": "Regular",
+              "price": 100,
+              "selectedDeliveryChannel": "pickup-in-point"
+          }
+      ]
+  },
+  "paymentData": {}
+}
 ```
 
 </CH.Code>
