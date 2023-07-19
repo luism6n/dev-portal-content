@@ -16,6 +16,8 @@ For any authentication required by the APIs presented in this tutorial, you must
 
 ## Step by step
 
+> ✅ To navigate through this article and explore specific topics, click the steps below. Relevant code will be highlighted and focused for your convenience.
+
 <CH.Spotlight>
 
 <CH.Code>
@@ -681,13 +683,13 @@ For a returning customer, it may be something like this.
 
 ### Pickup delivery
 
-If the delivery method is pickup point, add the information <code>"selectedDeliveryChannel": "pickup-in-point"</code>, as in this example.
+If the delivery method is pickup point, add the information `"selectedDeliveryChannel": "pickup-in-point"`, as in this example.
 
 > ℹ️️ This exemplifies a fairly simple fictitious shopping cart. The `orderForm` is actually highly customizable. Learn more about all possibilities in the [orderForm documentation.](https://developers.vtex.com/docs/guides/orderform-fields)
 
 <CH.Code show={["Body"]}>
 
-```json Body focus=5:12
+```json Body focus=11
 {
   "items": [],
   "clientProfileData": {},
@@ -972,7 +974,7 @@ The information you send in this step’s request body should be based on the `p
 
 > ℹ️️ In the `fields` object, you can send an `addressId` to use an existing address or a new `address` object.
 
->❗ Make sure that all value-related fields match the information sent in [step four](#4-place-the-order), when placing the order.
+>❗ Make sure that all value-related fields match the information sent in step 4, when placing the order.
 
 <CH.Code show={["Shell", "Python", "Node.js", "Response"]}>
 
@@ -1079,14 +1081,14 @@ At this point, if everything is ok with the payment, the order should be placed.
 
 <CH.Code show={["Shell", "Python", "Node.js", "Response"]}>
 
-```shell Shell mark=2[17:29],2[31:43]
+```shell Shell mark=2[17:29],2[31:43],2[86:97],5[21:28]
 curl --request post \
- --url 'https://{accountname}.{environment}.com.br/api/checkout/pub/gatewayCallback/123456789' \
- --header 'Accept: application/json' \
- --header 'Content-Type: application/json' \
- --header 'Cookie: Vtex_CHKO_Auth=0e/RpYIEZu19BuwXB4tZ7eIGu9HT8vdUAHWQDHDpxMc=; CheckoutDataAccess=0e/PoiTEZu19BuwXB4tZ7eIGu9HT8vdUAHWQDHDpxMc=' \
- --header 'X-VTEX-API-AppKey: ' \
- --header 'X-VTEX-API-AppToken: '
+  --url 'https://{accountname}.{environment}.com.br/api/checkout/pub/gatewayCallback/{orderGroup}' \
+  --header 'Accept: application/json' \
+  --header 'Content-Type: application/json' \
+  --header 'Cookie: {cookie}' \
+  --header 'X-VTEX-API-AppKey: ' \
+  --header 'X-VTEX-API-AppToken: '
 ```
 
 ```python Python mark=3[37:49],3[51:63]
